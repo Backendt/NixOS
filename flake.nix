@@ -1,15 +1,39 @@
 {
-  description = "A very basic flake";
+    description = "A Nix & Home-manager configuration for 3 computers";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-  };
+    inputs = {
+        # NixPkgs
+        nixpkgs.url = "nixpkgs/nixos-24.11";
+        nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # TODO Apply as overlay
 
-  outputs = { self, nixpkgs }: {
+        # Home manager
+        home-manager.url = "github:nix-community/home-manager/release-24.11";
+        home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    outputs = inputs@{ nixpkgs, ... }: 
+        let
+            settings = import ./settings.nix;
+        in {
+            nixosConfigurations = {
+                # Configurations
+                nixos-work = nixpkgs.lib.nixosSystem {
+                    system = settings.system;
+                    specialArgs = { inherit inputs; inherit settings; };
+                    modules = [ ./configurations/nixos-work.nix ./configurations ];
+                };
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+                nixos-desktop = nixpkgs.lib.nixosSystem {
+                    specialArgs = { inherit inputs; inherit settings; };
+                    sytem = settings.system;
+                    modules = [ ./configurations/nixos-desktop.nix ./configurations ];
+                };
 
-  };
+                nixos-laptop = nixpkgs.lib.nixosSystem {
+                    specialArgs = { inherit inputs; inherit settings; };
+                    system = settings.system;
+                    modules = [ ./configurations/nixos-laptop.nix ./configurations ];
+                };
+            };
+        };
 }

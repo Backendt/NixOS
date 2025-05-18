@@ -1,0 +1,17 @@
+scheme: "Poimandres" # The comments are used to show colors with neovim plugins
+base00: "101318" #101318
+base01: "13151b" #13151b
+base02: "add7ff" #add7ff
+base03: "21242e" #21242e
+base04: "a6accd" #a6accd
+base05: "d9dfff" #d9dfff
+base06: "5de4c7" #5de4c7
+base07: "d9dfff" #d9dfff
+base08: "d0679d" #d0679d
+base09: "d9dfff" #d9dfff
+base0A: "d9dfff" #d9dfff
+base0B: "5de4c7" #5de4c7
+base0C: "add7ff" #add7ff
+base0D: "5de4c7" #5de4c7
+base0E: "89ddff" #89ddff
+base0F: "a6accd" #a6accd

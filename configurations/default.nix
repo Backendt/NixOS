@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, settings, ... }:
+{ inputs, lib, settings, ... }:
 
 {
     boot.tmp.cleanOnBoot = true;
@@ -42,16 +42,22 @@
     # Configure console keymap
     console.keyMap = "fr";
 
+    # Add unstable packages overlay
+    nixpkgs.overlays = [(
+        final: prev: {
+            unstable = import inputs.nixpkgs-unstable {
+                system = settings.system;
+                config.allowUnfree = true;
+            };
+        }
+    )];
+
     imports =
         [
-            inputs.home-manager.nixosModules.home-manager
-            ./packages
+            ./packages/user # Default user packages (with home-manager)
+            ./packages/system # Default system packages
+            settings.desktop
         ];
-
-    home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-    };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${settings.username} = {

@@ -1,5 +1,8 @@
 {
-    imports = [ ./hardware/desktop-hardware-configuration.nix ];
+    imports = [
+        ./hardware/desktop-hardware-configuration.nix
+        ./packages/pipewire/desktop.nix
+    ];
 
     networking = {
         hostName = "nixos-desktop";

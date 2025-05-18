@@ -5,7 +5,6 @@
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
-        doas
         wget
         samba
         libnotify
@@ -17,5 +16,14 @@
     fonts.packages = with pkgs; [
         material-icons
         nerdfonts
+    ];
+
+    imports = [
+        ./doas.nix
+        ./git.nix
+        ./docker.nix
+        ./firewall.nix
+        ./bluetooth.nix
+        ./pipewire
     ];
 }

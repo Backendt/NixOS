@@ -9,7 +9,6 @@
 
     networking = {
         wireless.iwd.enable = lib.mkDefault true;
-        networkmanager.enable = true;
         networkmanager.wifi.backend = "iwd";
         nameservers = [ "1.1.1.1" "9.9.9.9" ]; # Cloudflare DNS
     };

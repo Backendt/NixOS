@@ -1,8 +1,11 @@
-
-{ config, ... }:
+{ hostname, ... }:
 
 {
-    imports = [
+    imports = if (hostname == "nixos-desktop") then
+        [ ./hyprland-desktop.nix ] else
+        if hostname == "nixos-work" then
+        [ ./hyprland-laptop.nix ./work-monitors.nix ] else
+        [ ./hyprland-laptop.nix ] ++ [
         ../wayland-utils.nix
         ./keybindings.nix
         ./visual.nix

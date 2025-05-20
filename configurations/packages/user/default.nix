@@ -1,18 +1,16 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, settings, ... }:
 
 {
-    imports = [
-        inputs.home-manager.nixosModules.home-manager
-    ];
+    imports = [ inputs.home-manager.nixosModules.home-manager ];
 
     home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-	extraSpecialArgs = { inherit inputs; };
+	    extraSpecialArgs = { inherit inputs; inherit settings; hostname = config.networking; };
         sharedModules = [
             ./git.nix
             ./bash.nix
-	    ./nixvim.nix
+	        ./nixvim.nix
             ./firefox.nix
             ./programming.nix
             ./kitty.nix
@@ -32,5 +30,5 @@
                 ];
             }
         ];
-    };    
+    };
 }

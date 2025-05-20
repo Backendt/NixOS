@@ -1,9 +1,8 @@
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
     imports = [
-        ./common.nix
         ./desktop-monitors.nix
         ./desktop-workspaces.nix
     ];
@@ -18,7 +17,6 @@
 
         cursor = {
             default_monitor = "DP-1";
-            #no_hardware_cursors = true;
         };
     };
 }

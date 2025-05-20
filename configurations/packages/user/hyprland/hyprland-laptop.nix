@@ -1,11 +1,7 @@
 
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 
 {
-    imports = [
-        ./common.nix
-    ];
-
     wayland.windowManager.hyprland.settings = {
         # Disable battery hungry effects
         decoration = {
@@ -20,5 +16,4 @@
         # Disable scaling on XWayland
         xwayland.force_zero_scaling = true;
     };
-
 }

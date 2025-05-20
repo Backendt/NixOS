@@ -1,17 +1,15 @@
-{ config, pkgs, ... }:
+{ settings, ... }:
 
-let
-    flakeDirectory = "~/.dotfiles/";
-in {
+{
     programs.bash = {
         enable = true;
         shellAliases = {
             la = "ls -lA";
-	    battery = "cat /sys/class/power_supply/BAT0/capacity";
+	        battery = "cat /sys/class/power_supply/BAT0/capacity";
             nixclean = "doas nix-collect-garbage -d";
-            nixbuild = "doas nixos-rebuild switch --flake ${flakeDirectory}";
-            nixtest = "echo 'WARNING: This build is not persistent'; doas nixos-rebuild test --flake ${flakeDirectory}";
-            update = "doas nix flake update --flake ${flakeDirectory} && nix flake update --flake ${flakeDirectory} && echo 'Done ! Please rebuild NixOS.'";
+            nixbuild = "doas nixos-rebuild switch --flake ${settings.flake-directory}";
+            nixtest = "echo 'WARNING: This build is not persistent'; doas nixos-rebuild test --flake ${settings.flake-directory}";
+            update = "doas nix flake update --flake ${settings.flake-directory} && nix flake update --flake ${settings.flake-directory} && echo 'Done ! Please rebuild NixOS.'";
         };
 
         historyIgnore = [

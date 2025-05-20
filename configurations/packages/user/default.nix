@@ -15,6 +15,7 @@
             ./programming.nix
             ./kitty.nix
             ./pentest.nix
+            settings.theme
             {
                 home.stateVersion = "24.11";
                 home.packages = with pkgs; [

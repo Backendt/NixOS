@@ -10,9 +10,12 @@
         home-manager.url = "github:nix-community/home-manager/release-24.11";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-	# NixVim
-	nixvim.url = "github:nix-community/nixvim/nixos-24.11";
-	nixvim.inputs.nixpkgs.follows = "nixpkgs";
+	    # NixVim
+	    nixvim.url = "github:nix-community/nixvim/nixos-24.11";
+	    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    
+        # Stylix
+        stylix.url = "github:danth/stylix/release-24.11";
     };
 
     outputs = inputs@{ nixpkgs, ... }: 

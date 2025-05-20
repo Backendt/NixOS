@@ -6,6 +6,7 @@
     home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
+        backupFileExtension = "old";
 	    extraSpecialArgs = { inherit inputs; inherit settings; hostname = config.networking; };
         sharedModules = [
             ./git.nix

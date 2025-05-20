@@ -3,8 +3,8 @@
 
 {
     imports = [
-        ./desktop-monitors.nix
-        ./desktop-workspaces.nix
+        ./monitors.nix
+        ./workspaces.nix
     ];
 
     wayland.windowManager.hyprland.settings = {

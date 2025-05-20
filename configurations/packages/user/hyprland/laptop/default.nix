@@ -2,6 +2,8 @@
 { lib, ... }:
 
 {
+    imports = [ ./monitors.nix ];
+
     wayland.windowManager.hyprland.settings = {
         # Disable battery hungry effects
         decoration = {

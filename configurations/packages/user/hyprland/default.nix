@@ -1,11 +1,8 @@
 { hostname, ... }:
 
 {
-    imports = if (hostname == "nixos-desktop") then
-        [ ./hyprland-desktop.nix ] else
-        if hostname == "nixos-work" then
-        [ ./hyprland-laptop.nix ./work-monitors.nix ] else
-        [ ./hyprland-laptop.nix ] ++ [
+    imports = if hostname == "nixos-desktop" then
+        [ ./desktop ] else [ ./laptop ] ++ [
         ../wayland-utils.nix
         ./keybindings.nix
         ./visual.nix

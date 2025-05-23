@@ -24,6 +24,7 @@
                         installCargo = false;
                         installRustc = false;
                     };
+                    ts_ls.enable = true; # Javascript/Typescript
                 };
                 keymaps = {
                     diagnostic = {

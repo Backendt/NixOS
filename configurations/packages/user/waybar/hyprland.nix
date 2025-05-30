@@ -91,10 +91,11 @@
                 format-icons = {
                     discharging = ["" "" "" "" ""];
                     charging = "";
-                    "Not charging" = "";
+                    full = "";
                 };
                 states = {
                     critical = 15;
+                    full = 100;
                 };
             };
 

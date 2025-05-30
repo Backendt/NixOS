@@ -8,6 +8,7 @@
     # Enable greetd display manager
     services.greetd = {
         enable = true;
+        vt = 2;
         settings = {
             default_session = {
                 command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";

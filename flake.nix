@@ -32,7 +32,7 @@
 
                 nixos-desktop = nixpkgs.lib.nixosSystem {
                     specialArgs = { inherit inputs; inherit settings; };
-                    sytem = settings.system;
+                    system = settings.system;
                     modules = [ ./configurations/nixos-desktop.nix ./configurations ];
                 };
 

@@ -1,7 +1,7 @@
 {
     imports = [
         ./hardware/desktop-hardware-configuration.nix
-        ./packages/pipewire/desktop.nix
+        ./packages/system/pipewire/desktop.nix
     ];
 
     networking = {

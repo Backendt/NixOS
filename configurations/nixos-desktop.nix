@@ -1,6 +1,7 @@
 {
     imports = [
         ./hardware/desktop-hardware-configuration.nix
+        ./packages/system/nvidia.nix
         ./packages/system/pipewire/desktop.nix
     ];
 

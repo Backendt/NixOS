@@ -17,6 +17,7 @@
             ./kitty.nix
             ./pentest.nix
             ./gpg.nix
+            ./ssh.nix
             settings.theme
             {
                 home.stateVersion = "24.11";

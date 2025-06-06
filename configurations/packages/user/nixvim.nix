@@ -18,6 +18,7 @@
                     bashls.enable = true;
                     nixd.enable = true; # Nix
                     pyright.enable = true; # Python
+                    ruff.enable = true; # Python
                     sqls.enable = true; # SQL
                     rust_analyzer = {
                         enable = true;

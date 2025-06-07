@@ -1,8 +1,10 @@
 { hostname, ... }:
 
-{
-    imports = if hostname == "nixos-desktop" then
-        [ ./desktop ] else [ ./laptop ] ++ [
+let
+    host-config = if hostname == "nixos-desktop" then ./desktop else ./laptop;
+in {
+    imports = [
+        host-config
         ../wayland-utils.nix
         ./keybindings.nix
         ./visual.nix

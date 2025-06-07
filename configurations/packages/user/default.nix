@@ -7,7 +7,7 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "old";
-	    extraSpecialArgs = { inherit inputs; inherit settings; hostname = config.networking; };
+	    extraSpecialArgs = { inherit inputs; inherit settings; hostname = config.networking.hostName; };
         sharedModules = [
             ./git.nix
             ./bash.nix

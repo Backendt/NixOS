@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
     services.mako = {
         enable = true;
@@ -7,5 +5,6 @@
 
         borderRadius = 5;
         defaultTimeout = 3500; # In milliseconds
+        anchor = "top-center";
     };
 }

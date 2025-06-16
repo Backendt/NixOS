@@ -25,5 +25,6 @@
         ./firewall.nix
         ./bluetooth.nix
         ./pipewire
+        ./printer.nix
     ];
 }

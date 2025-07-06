@@ -10,6 +10,6 @@
     boot.kernelParams = [ "iommu=soft" ];
 
     environment.systemPackages = [
-        pkgs.ferdium
+        pkgs.unstable.ferdium
     ];
 }

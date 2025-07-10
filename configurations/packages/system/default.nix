@@ -26,5 +26,6 @@
         ./bluetooth.nix
         ./pipewire
         ./printer.nix
+        ./kde-connect.nix
     ];
 }

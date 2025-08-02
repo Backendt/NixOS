@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
     home.packages = with pkgs; [
-        python3
-        python311Packages.requests
+        python313Full
+        python313Packages.requests
         jetbrains.idea-community
         jdk
         cargo

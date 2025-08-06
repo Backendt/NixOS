@@ -10,6 +10,7 @@
             nixbuild = "doas nixos-rebuild switch --flake ${settings.flake-directory}";
             nixtest = "echo 'WARNING: This build is not persistent'; doas nixos-rebuild test --flake ${settings.flake-directory}";
             update = "doas nix flake update --flake ${settings.flake-directory} && nix flake update --flake ${settings.flake-directory} && echo 'Done ! Please rebuild NixOS.'";
+            fwupdate = "doas fwupdmgr refresh; doas fwupdmgr get-updates; doas fwupdmgr update";
             venv = "[[ ! -d venv ]] && python -m venv venv; source venv/bin/activate";
         };
 

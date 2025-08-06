@@ -18,6 +18,8 @@
         nerdfonts
     ];
 
+    services.fwupd.enable = true;
+
     imports = [
         ./doas.nix
         ./git.nix

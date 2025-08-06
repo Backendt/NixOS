@@ -29,5 +29,6 @@
         ./pipewire
         ./printer.nix
         ./kde-connect.nix
+        ./wireguard.nix
     ];
 }

@@ -4,4 +4,7 @@
     ];
 
     networking.hostName = "nixos-laptop";
+
+    # TLP Power management
+    services.tlp.enable = true;
 }

@@ -12,4 +12,7 @@
     environment.systemPackages = [
         pkgs.unstable.ferdium
     ];
+
+    # TLP Power management
+    services.tlp.enable = true;
 }

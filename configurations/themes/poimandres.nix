@@ -1,15 +1,9 @@
 { ... }:
 
 {
-    imports = let
-        overrides = ../packages/user/stylix/overrides/poimandres;
-    in [
+    imports = [
         ../packages/user/stylix
-        (overrides + "/waybar.nix")
-        (overrides + "/neovim.nix")
-        (overrides + "/nixvim.nix")
-        (overrides + "/wofi.nix")
-        (overrides + "/vesktop.nix")
+        ../packages/user/stylix/overrides/poimandres
     ];
 
     stylix = {

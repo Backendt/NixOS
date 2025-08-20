@@ -12,6 +12,7 @@
             update = "doas nix flake update --flake ${settings.flake-directory} && nix flake update --flake ${settings.flake-directory} && echo 'Done ! Please rebuild NixOS.'";
             fwupdate = "doas fwupdmgr refresh; doas fwupdmgr get-updates; doas fwupdmgr update";
             venv = "[[ ! -d venv ]] && python -m venv venv; source venv/bin/activate";
+            nsh = "nix-shell";
         };
 
         historyIgnore = [

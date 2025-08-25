@@ -11,6 +11,8 @@
         killall
         pfetch-rs
         ntfs3g
+        lsof
+        usbutils
     ];
 
     fonts.packages = with pkgs; [
@@ -30,5 +32,6 @@
         ./printer.nix
         ./kde-connect.nix
         ./wireguard.nix
+        ./virtualbox.nix
     ];
 }

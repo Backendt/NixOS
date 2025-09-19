@@ -48,15 +48,15 @@
             "$mod + SHIFT, up, movewindow, u"
             "$mod + SHIFT, down, movewindow, d"
 
-            # Switch workspaces (FRENCH KEYBOARD)
+            # Switch workspaces (BELGIAN KEYBOARD)
             "$mod, ampersand, workspace, 1"
             "$mod, eacute, workspace, 2"
             "$mod, quotedbl, workspace, 3"
             "$mod, apostrophe, workspace, 4"
             "$mod, parenleft, workspace, 5"
-            "$mod, minus, workspace, 6"
+            "$mod, section, workspace, 6"
             "$mod, egrave, workspace, 7"
-            "$mod, underscore, workspace, 8"
+            "$mod, exclam, workspace, 8"
             "$mod, ccedilla, workspace, 9"
             "$mod, agrave, workspace, 10"
 
@@ -72,15 +72,15 @@
             "$mod, KP_Prior, workspace, 9"
             "$mod, KP_Insert, workspace, 10"
 
-            # Move window to workspace (FRENCH KEYBOARD)
+            # Move window to workspace (BELGIAN KEYBOARD)
             "$mod + SHIFT, ampersand, movetoworkspace, 1"
             "$mod + SHIFT, eacute, movetoworkspace, 2"
             "$mod + SHIFT, quotedbl, movetoworkspace, 3"
             "$mod + SHIFT, apostrophe, movetoworkspace, 4"
             "$mod + SHIFT, parenleft, movetoworkspace, 5"
-            "$mod + SHIFT, minus, movetoworkspace, 6"
+            "$mod + SHIFT, section, movetoworkspace, 6"
             "$mod + SHIFT, egrave, movetoworkspace, 7"
-            "$mod + SHIFT, underscore, movetoworkspace, 8"
+            "$mod + SHIFT, exclam, movetoworkspace, 8"
             "$mod + SHIFT, ccedilla, movetoworkspace, 9"
             "$mod + SHIFT, agrave, movetoworkspace, 10"
 

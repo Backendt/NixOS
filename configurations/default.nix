@@ -33,13 +33,10 @@
     };
 
     # Configure keymap in X11
-    services.xserver.xkb = {
-        layout = "fr";
-        variant = "";
-    };
+    services.xserver.xkb.layout = "be";
 
     # Configure console keymap
-    console.keyMap = "fr";
+    console.keyMap = "be-latin1";
 
     # Add unstable packages overlay
     nixpkgs.overlays = [(

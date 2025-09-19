@@ -30,7 +30,7 @@ in {
             master.new_status = "master";
 
             input = {
-                kb_layout = "fr";
+                kb_layout = "be";
                 numlock_by_default = true;
 
                 follow_mouse = 2;

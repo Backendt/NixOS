@@ -9,5 +9,5 @@
 
     # Desktop environment
     desktop = ./configurations/desktop-environment/hyprland.nix;
-    theme = ./configurations/themes/poimandres.nix;
+    theme = ./configurations/themes/mocha.nix;
 }

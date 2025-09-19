@@ -1,8 +1,15 @@
 { pkgs, ... }:
 
 {
-    environment.systemPackages = [ pkgs.libnfc pkgs.libusb1 ];
+    environment.systemPackages = [ pkgs.pcsc-tools pkgs.libnfc ];
 
-    # TODO Or disable it ?
-    hardware.nfc-nci.enable = true;
+    services.pcscd = {
+        enable = true;
+        plugins = [ pkgs.ccid ];
+    };
+
+    services.udev.extraRules = ''
+       SUBSYSTEM=="usb", ATTRS{idVendor}=="072f", ATTRS{idProduct}=="2200", GROUP="users", MODE="0666"
+    '';
+    boot.blacklistedKernelModules = [ "pn533_usb" ];
 }

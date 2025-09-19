@@ -11,8 +11,8 @@
         base16Scheme = ../packages/user/stylix/styles/mocha.yaml;
 
         opacity = {
-            terminal = 0.9;
-            desktop = 0.6;
+            terminal = 0.6;
+            desktop = 0.3;
         };
     };
 }

@@ -4,7 +4,7 @@
         layer = "overlay";
 
         borderRadius = 5;
-        defaultTimeout = 3500; # In milliseconds
+        defaultTimeout = 7000; # In milliseconds
         anchor = "top-center";
     };
 }

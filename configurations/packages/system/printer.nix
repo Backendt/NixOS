@@ -9,5 +9,5 @@
         drivers = with pkgs.unstable; [ hplipWithPlugin gutenprint canon-cups-ufr2 cups-filters ];
     };
 
-    environment.systemPackages = [ pkgs.unstable.poppler_utils ];
+    environment.systemPackages = [ pkgs.unstable.poppler-utils ];
 }

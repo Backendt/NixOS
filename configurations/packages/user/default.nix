@@ -20,10 +20,10 @@
             ./ssh.nix
             settings.theme
             {
-                home.stateVersion = "24.11";
+                home.stateVersion = "25.11";
                 home.packages = with pkgs; [
                     gimp
-                    onlyoffice-bin
+                    onlyoffice-desktopeditors
                     vlc
                     feh
                     unstable.vesktop
@@ -31,6 +31,10 @@
                     ungoogled-chromium
                     playerctl
                     brightnessctl
+                    zip
+                    unzip
+                    dust
+                    tree
                 ];
             }
         ];

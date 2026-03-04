@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-    imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+    imports = [ inputs.nixvim.homeModules.nixvim ];
 
     programs.nixvim = {
         enable = true;
@@ -19,13 +19,15 @@
                     nixd.enable = true; # Nix
                     pyright.enable = true; # Python
                     ruff.enable = true; # Python
-                    sqls.enable = true; # SQL
+                    #sqls.enable = true; # SQL
+                    sqruff.enable = true; # SQL
                     rust_analyzer = {
                         enable = true;
                         installCargo = false;
                         installRustc = false;
                     };
                     ts_ls.enable = true; # Javascript/Typescript
+                    vue_ls.enable = true;
                 };
                 keymaps = {
                     diagnostic = {

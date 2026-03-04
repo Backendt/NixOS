@@ -17,7 +17,7 @@
 
     fonts.packages = with pkgs; [
         material-icons
-        nerdfonts
+        font-awesome
     ];
 
     services.fwupd.enable = true;

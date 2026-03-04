@@ -5,6 +5,6 @@
     services.gpg-agent = {
         enable = true;
         enableBashIntegration = true;
-        pinentryPackage = pkgs.pinentry-curses;
+        pinentry.package = pkgs.pinentry-curses;
     };
 }

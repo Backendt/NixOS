@@ -2,7 +2,7 @@
 
 {
     home.packages = with pkgs; [
-        python313Full
+        python313
         python313Packages.requests
         jetbrains.idea-community
         jdk
@@ -12,4 +12,6 @@
         rustfmt
         vscodium
     ];
+
+    programs.yarn.enable = true;
 }

@@ -98,16 +98,16 @@ in {
         profiles."${profileName}" = {
             isDefault = true;
             search = {
-                default = "DuckDuckGo";
+                default = "ddg";
                 engines = {
                     "MyNixOS" = {
                         urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
-                        iconUpdateURL = "https://mynixos.com/favicon.ico";
+                        icon = "https://mynixos.com/favicon.ico";
                         definedAliases = [ "@nix" ];
                     };
                     "Archwiki" = {
                         urls = [{ template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; }];
-                        iconUpdateURL = "https://wiki.archlinux.org/favicon.ico";
+                        icon = "https://wiki.archlinux.org/favicon.ico";
                         definedAliases = [ "@a" ];
                     };
                 };

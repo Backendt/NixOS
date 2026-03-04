@@ -69,7 +69,7 @@
             network = {
                 interval = 30;
                 format = "?";
-                format-disconnected = "";
+                format-disconnected = "";
                 format-wifi = "";
                 format-ethernet = "󰈀";
                 tooltip-format = "{ipaddr}";
@@ -83,7 +83,7 @@
 
             memory = {
                 interval = 5;
-                format = "{}% ";
+                format = "{}% ";
                 max-length = 10;
                 states = {
                     critical = 85;
@@ -92,7 +92,7 @@
 
             disk = {
                 interval = 120;
-                format = "{percentage_used}% ";
+                format = "{percentage_used}% ";
                 path = "/";
                 states = {
                     critical = 85;

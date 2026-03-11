@@ -35,6 +35,7 @@
                     unzip
                     dust
                     tree
+                    jq
                 ];
             }
         ];

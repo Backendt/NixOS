@@ -7,6 +7,7 @@
         grim
         slurp
         wl-clipboard
+        wlvncc
     ];
 
     programs.wofi.enable = true;

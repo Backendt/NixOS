@@ -36,6 +36,9 @@
                     dust
                     tree
                     jq
+                    wirelesstools
+                    imv
+                    obsidian
                 ];
             }
         ];

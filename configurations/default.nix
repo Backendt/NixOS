@@ -8,8 +8,11 @@
     };
 
     networking = {
-        wireless.iwd.enable = lib.mkDefault true;
-        networkmanager.wifi.backend = "iwd";
+        wireless = {
+            enable = true;
+            userControlled.enable = true;
+        };
+        networkmanager.enable = true;
         nameservers = [ "1.1.1.1" "9.9.9.9" ]; # Cloudflare DNS
     };
 
@@ -59,7 +62,7 @@
     users.users.${settings.username} = {
         isNormalUser = true;
         description = settings.username;
-        extraGroups = [ "networkmanager" "wheel" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

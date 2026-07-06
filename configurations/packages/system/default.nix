@@ -32,6 +32,6 @@
         ./printer.nix
         ./kde-connect.nix
         ./wireguard.nix
-        ./virtualbox.nix
+        ./virtualization.nix
     ];
 }

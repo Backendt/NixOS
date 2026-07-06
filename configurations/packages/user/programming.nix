@@ -9,6 +9,7 @@
         cargo
         rustc
         gcc
+        gnumake
         rustfmt
         vscodium
     ];

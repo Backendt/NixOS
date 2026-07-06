@@ -18,4 +18,8 @@
 
     # TLP Power management
     services.tlp.enable = true;
+    programs.wireshark = {
+        enable = true;
+        package = pkgs.wireshark;
+    };
 }

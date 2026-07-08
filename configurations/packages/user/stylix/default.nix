@@ -19,6 +19,8 @@
                 name = "TeX Gyre Heros";
             };
         };
+
+        targets.firefox.profileNames = [ "main" ];
     };
 
     home.pointerCursor = lib.mkForce {

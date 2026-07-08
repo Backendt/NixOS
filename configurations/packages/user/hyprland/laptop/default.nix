@@ -10,7 +10,6 @@
             shadow.enabled = false;
             blur.enabled = lib.mkForce false;
         };
-        misc.vfr = true;
 
         # Invert scrolling direction
         input.touchpad.natural_scroll = true;

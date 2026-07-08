@@ -15,5 +15,5 @@
         exec = ["xrandr --output 'eDP-1' --primary"];
     };
 
-    home.packages = [ pkgs.xorg.xrandr ];
+    home.packages = [ pkgs.xrandr ];
 }

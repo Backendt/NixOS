@@ -1,10 +1,8 @@
-{ hostname, ... }:
+{ ... }:
 
-let
-    host-config = if hostname == "nixos-desktop" then ./desktop else ./laptop;
-in {
+{
     imports = [
-        host-config
+        ./laptop/default.nix
         ../wayland-utils.nix
         ./keybindings.nix
         ./visual.nix
@@ -13,17 +11,13 @@ in {
 
     wayland.windowManager.hyprland = {
         enable = true;
+        configType = "hyprlang";
         settings = {
             env = [
                 "NIXOS_OZONE_WL,1"
             ];
 
-            # Allow tearing for steam games
-            general.allow_tearing = true;
-            windowrulev2 = "immediate, class:^steam_app\d+$";
-
             dwindle = {
-                pseudotile = true;
                 preserve_split = true;
             };
 

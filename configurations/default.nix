@@ -10,7 +10,7 @@
     networking = {
         wireless = {
             enable = true;
-            userControlled.enable = true;
+            userControlled = true;
         };
         networkmanager.enable = true;
         nameservers = [ "1.1.1.1" "9.9.9.9" ]; # Cloudflare DNS
@@ -40,16 +40,6 @@
 
     # Configure console keymap
     console.keyMap = "be-latin1";
-
-    # Add unstable packages overlay
-    nixpkgs.overlays = [(
-        final: prev: {
-            unstable = import inputs.nixpkgs-unstable {
-                system = settings.system;
-                config.allowUnfree = true;
-            };
-        }
-    )];
 
     imports =
         [

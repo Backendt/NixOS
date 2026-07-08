@@ -4,7 +4,7 @@
     home.packages = with pkgs; [
         python313
         python313Packages.requests
-        jetbrains.idea-community
+        jetbrains.idea
         jdk
         cargo
         rustc

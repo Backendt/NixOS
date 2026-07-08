@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 {
-    # Forgive me Richard
-    nixpkgs.config.allowUnfree = true;
-
     environment.systemPackages = with pkgs; [
         wget
         samba

@@ -19,6 +19,7 @@
             ./pentest.nix
             ./gpg.nix
             ./ssh.nix
+            ./ai.nix
             settings.theme
             {
                 home.stateVersion = "26.05";

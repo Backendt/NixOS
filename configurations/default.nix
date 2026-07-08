@@ -9,6 +9,7 @@
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
     };
+    nixpkgs.config.rocmSupport = true;
 
     networking = {
         wireless = {

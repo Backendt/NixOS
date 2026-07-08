@@ -1,6 +1,9 @@
-{ inputs, lib, settings, ... }:
+{ pkgs, settings, ... }:
 
 {
+    networking.hostName = "mbec-nixos";
+    boot.kernelParams = [ "iommu=soft" ];
+
     boot.tmp.cleanOnBoot = true;
     boot.loader = {
         systemd-boot.enable = true;
@@ -46,7 +49,25 @@
             ./packages/user # Default user packages (with home-manager)
             ./packages/system # Default system packages
             settings.desktop
+            ./hardware-configuration.nix
+            ./packages/system/fingerprint.nix
+            ./packages/system/nfc.nix
+            ./packages/system/gaming.nix
         ];
+
+    environment.systemPackages = [
+        pkgs.unstable.ferdium
+        pkgs.anydesk
+        pkgs.rustdesk
+    ];
+
+    # TLP Power management
+    services.tlp.enable = true;
+    programs.wireshark = {
+        enable = true;
+        package = pkgs.wireshark;
+    };
+
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${settings.username} = {

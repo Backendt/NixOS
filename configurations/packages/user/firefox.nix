@@ -96,9 +96,10 @@ in {
         };
 
         profiles."${profileName}" = {
+            id = 0;
             isDefault = true;
             search = {
-                default = "ddg";
+                default = "google";
                 engines = {
                     "MyNixOS" = {
                         urls = [{ template = "https://mynixos.com/search?q={searchTerms}"; }];
@@ -129,11 +130,6 @@ in {
 
     # Allow extensions on private browsing
     home.file = let
-        defaultFirefoxProfilePath = if pkgs.stdenv.hostPlatform.isDarwin then 
-        "Library/Application Support/Firefox/Profiles/${profileName}" else
-        ".mozilla/firefox/${profileName}";
-
-        extensionPrefsPath = "${defaultFirefoxProfilePath}/extension-preferences.json";
 
         # Settings added to "extension-preferences.json"
         newPrefs = {
@@ -217,6 +213,6 @@ in {
             };
         };
     in {
-        "${extensionPrefsPath}".text = (builtins.toJSON newPrefs);
+        ".mozilla/firefox/${profileName}/extension-preferences.json".text = (builtins.toJSON newPrefs);
     };
 }

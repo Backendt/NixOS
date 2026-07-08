@@ -1,5 +1,5 @@
 {
-    description = "A Nix & Home-manager configuration for 3 computers";
+    description = "A Nix & Home-manager configuration";
 
     inputs = {
         # NixPkgs
@@ -27,12 +27,11 @@
         in {
             nixosConfigurations = {
                 # Configurations
-                nixos-work = nixpkgs.lib.nixosSystem {
+                mbec-nixos = nixpkgs.lib.nixosSystem {
                     system = settings.system;
                     specialArgs = { inherit inputs settings;};
                     modules = [
                         ./configurations/default.nix
-                        ./configurations/nixos-work.nix
                         ({ ...}: {
                             nixpkgs.config.allowUnfree = true;
                             nixpkgs.overlays = [
@@ -40,18 +39,6 @@
                             ];
                         })
                     ];
-                };
-
-                nixos-desktop = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs; inherit settings; };
-                    system = settings.system;
-                    modules = [ ./configurations/nixos-desktop.nix ./configurations ];
-                };
-
-                nixos-laptop = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs; inherit settings; };
-                    system = settings.system;
-                    modules = [ ./configurations/nixos-laptop.nix ./configurations ];
                 };
             };
         };

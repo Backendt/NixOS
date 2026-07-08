@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
     wayland.windowManager.hyprland.settings = {
@@ -6,7 +6,7 @@
         bind = [
             # Apps
             "$mod, Return, exec, kitty"
-            "$mod, Space, exec, wofi -GiIS drun"
+            "$mod, Space, exec, walker"
             "$mod, B, exec, firefox --private-window"
             "$mod + SHIFT, B, exec, firefox"
             "$mod + SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"

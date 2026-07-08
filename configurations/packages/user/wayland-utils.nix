@@ -10,5 +10,6 @@
         wlvncc
     ];
 
-    programs.wofi.enable = true;
+    services.walker.enable = true;
+    services.elephant.enable = true;
 }

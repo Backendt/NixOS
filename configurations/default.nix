@@ -10,6 +10,7 @@
         efi.canTouchEfiVariables = true;
     };
     nixpkgs.config.rocmSupport = true;
+    hardware.graphics.enable = true;
 
     networking = {
         wireless = {
@@ -64,11 +65,7 @@
 
     # TLP Power management
     services.tlp.enable = true;
-    programs.wireshark = {
-        enable = true;
-        package = pkgs.wireshark;
-    };
-
+    services.upower.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${settings.username} = {

@@ -1,31 +1,33 @@
-{ ... }:
+{ pkgs, ... }:
 
-{
+let
+    model_fast = "gpt-oss:20b";
+in {
     programs = {
-        aider-chat.enable = true;
         aichat = {
             enable = true;
-            settings.clients = [
-                {
-                    type = "openai-compatible";
-                    name = "ollama";
-                    api_base = "http://localhost:11434/v1";
-                    models = [
-                        { name = "llama3.1"; max_tokens = 4096; }
-                        { name = "qwen3-coder"; max_tokens = 8192; }
-                    ];
-                }
-            ];
+            settings = {
+                clients = [
+                    {
+                        type = "openai-compatible";
+                        name = "ollama";
+                        api_base = "http://localhost:11434/v1";
+                        models = [
+                            { name = "${model_fast}"; max_tokens = 4096; }
+                        ];
+                    }
+                ];
+            };
         };
     };
 
+    home.packages = [ pkgs.claude-code ];
+
     home.sessionVariables = {
         OLLAMA_API_BASE = "http://127.0.0.1:11434";
-        AIDER_MODEL = "ollama/qwen3-coder";
     };
     
     programs.bash.shellAliases = {
-        ask = "aichat";
-        code = "aider";
+        ask = "aichat --model 'ollama:${model_fast}' --prompt 'Answer with maximum conciseness: direct only, no greetings, filler, explanations, or preambles unless explicitly requested. Use short sentences or bullet points only if necessary. Omit all hedging, examples, summaries, and closing remarks. Prioritize speed and factual accuracy above all else.'";
     };
 }

@@ -41,6 +41,8 @@
                     wirelesstools
                     imv
                     obsidian
+                    htop
+                    nerd-fonts.jetbrains-mono
                 ];
             }
         ];

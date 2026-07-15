@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-    imports = [ ./mako.nix ];
-
     home.packages = with pkgs; [
         grim
         slurp

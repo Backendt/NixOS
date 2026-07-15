@@ -19,6 +19,7 @@
 
     services.fwupd.enable = true;
 
+    programs.wireshark.enable = true;
     imports = [
         ./doas.nix
         ./git.nix

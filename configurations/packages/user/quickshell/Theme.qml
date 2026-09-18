@@ -1,0 +1,1 @@
+/home/mat/.config/quickshell/Theme.qml

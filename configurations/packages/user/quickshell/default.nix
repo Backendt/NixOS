@@ -25,6 +25,8 @@ in {
 
         configs = {
             "shell.qml" = ./shell.qml;
+            "bar" = ./bar;
+            "modules" = ./modules;
             "Theme.qml" = themeFile;
         };
     };

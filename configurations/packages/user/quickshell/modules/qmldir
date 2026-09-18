@@ -1,0 +1,8 @@
+module modules
+Workspaces 1.0 workspaces.qml
+Tray 1.0 tray.qml
+Wifi 1.0 wifi.qml
+Audio 1.0 audio.qml
+Battery 1.0 battery.qml
+Clock 1.0 clock.qml
+Notifications 1.0 notifications.qml

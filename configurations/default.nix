@@ -3,6 +3,7 @@
 {
     networking.hostName = "mbec-nixos";
     boot.kernelParams = [ "iommu=soft" ];
+    boot.kernel.sysctl."kernel.sysrq" = 64; # Trigger OOM Killer with Alt+Print+F
 
     boot.tmp.cleanOnBoot = true;
     boot.loader = {

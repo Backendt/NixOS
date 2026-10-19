@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 
+import "audio"
 import "bar"
 import "notifications"
 import "stats"
@@ -13,6 +14,7 @@ QtObject {
 
     readonly property var theme: Theme {}
 
+    readonly property var audio: AudioService {}
     readonly property var notifications: NotificationService {}
     readonly property var stats: StatsService {}
 

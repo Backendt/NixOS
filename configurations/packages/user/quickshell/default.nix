@@ -25,6 +25,7 @@ in {
 
         configs = {
             "shell.qml" = ./shell.qml;
+            "audio" = ./audio;
             "bar" = ./bar;
             "modules" = ./modules;
             "notifications" = ./notifications;

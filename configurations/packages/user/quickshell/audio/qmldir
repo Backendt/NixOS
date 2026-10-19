@@ -1,0 +1,4 @@
+module audio
+AudioService 1.0 service.qml
+VolumeSlider 1.0 slider.qml
+VolumePopup 1.0 popup.qml

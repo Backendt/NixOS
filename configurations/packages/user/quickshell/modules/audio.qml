@@ -1,29 +1,39 @@
 import QtQuick
-import Quickshell.Services.Pipewire
+
+import "../audio"
 
 Text {
+    id: audioModule
+
+    readonly property var service: root.audio
+
     font.pointSize: root.fontSize
     font.family: root.fontFamily
-    
-    color: {
-        let sink = pw.objects[0];
-        if(sink && sink.audio && sink.audio.muted)
-            return theme.base08
-        return theme.base05
-    }
+
     text: {
-        let sink = pw.objects[0];
-        if (sink === undefined || sink.audio === undefined)
-            return "󰖁"
-        let vol = Math.round(sink.audio.volume * 100)
-        if(sink.audio.muted) {
-            return "󰝟 0%";
-        }
-        return "󰕾 " + vol + "%";
+        if (!service.ready) return service.icon;
+        return service.icon + " " + (service.muted ? 0 : Math.round(service.volume * 100)) + "%";
+    }
+    color: {
+        if (!service.ready || service.muted) return theme.base08;
+        if (volumePopup.open) return theme.base0D;
+        if (audioMouseArea.containsMouse) return theme.base0E;
+        return theme.base05;
     }
 
-    PwObjectTracker {
-        id: pw
-        objects: [ Pipewire.defaultAudioSink ]
+    Behavior on color { ColorAnimation { duration: 150 } }
+
+    MouseArea {
+        id: audioMouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: volumePopup.open = !volumePopup.open
+        onWheel: wheel => audioModule.service.setVolume(audioModule.service.volume + Math.sign(wheel.angleDelta.y) * audioModule.service.step)
+    }
+
+    VolumePopup {
+        id: volumePopup
+        anchorItem: audioModule
     }
 }

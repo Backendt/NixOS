@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 
 Text {
     id: notificationsText
@@ -29,6 +30,6 @@ Text {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: notificationsText.service.toggleCenter()
+        onClicked: notificationsText.service.toggleCenter(QsWindow.window.screen)
     }
 }

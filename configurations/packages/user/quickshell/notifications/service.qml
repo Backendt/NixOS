@@ -8,6 +8,7 @@ QtObject {
     readonly property int defaultTimeout: 5000 // In milliseconds
 
     property bool centerOpen: false
+    property var screen: null // Monitor the center opens on
     property var popups: []
     property var receivedAt: ({})
 
@@ -40,8 +41,10 @@ QtObject {
         return notif.expireTimeout > 0 ? notif.expireTimeout * 1000 : defaultTimeout;
     }
 
-    function toggleCenter() {
-        centerOpen = !centerOpen;
+    // Clicking from another monitor moves the center there instead of closing it
+    function toggleCenter(screen) {
+        centerOpen = !centerOpen || service.screen !== screen;
+        service.screen = screen;
         if (centerOpen)
             popups = [];
     }

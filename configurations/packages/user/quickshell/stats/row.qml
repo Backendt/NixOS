@@ -9,6 +9,7 @@ ColumnLayout {
     property string value
     property real ratio: 0
     property bool critical: false
+    property var actions: [] // Buttons shown on the right: [{ text, trigger }]
 
     readonly property color accent: critical ? theme.base08 : theme.base0D
 
@@ -43,6 +44,38 @@ ColumnLayout {
             font.bold: statRow.critical
             font.family: root.fontFamily
             font.pointSize: root.fontSize
+        }
+
+        Repeater {
+            model: statRow.actions
+
+            Rectangle {
+                required property var modelData
+
+                implicitWidth: actionLabel.implicitWidth + 14
+                implicitHeight: actionLabel.implicitHeight + 6
+                radius: 6
+                color: actionMouseArea.containsMouse ? theme.base0D : theme.base03
+
+                Behavior on color { ColorAnimation { duration: 150 } }
+
+                Text {
+                    id: actionLabel
+                    anchors.centerIn: parent
+                    text: modelData.text
+                    color: actionMouseArea.containsMouse ? theme.base00 : theme.base05
+                    font.family: root.fontFamily
+                    font.pointSize: root.fontSize - 1
+                }
+
+                MouseArea {
+                    id: actionMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: modelData.trigger()
+                }
+            }
         }
     }
 

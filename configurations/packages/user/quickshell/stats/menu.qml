@@ -17,6 +17,7 @@ PanelWindow {
     // Only anchored to the top, so the menu is centered under the clock
     anchors.top: true
 
+    screen: service.screen
     visible: progress > 0
     implicitWidth: 340
     implicitHeight: panel.implicitHeight + 16
@@ -29,7 +30,7 @@ PanelWindow {
 
     // Clicking anywhere outside the menu (or the bar) closes it
     HyprlandFocusGrab {
-        windows: [menuWindow, root.bar]
+        windows: [menuWindow, ...root.bar.instances]
         active: menuWindow.service.menuOpen && menuWindow.visible
         onCleared: menuWindow.service.menuOpen = false
     }
@@ -110,6 +111,21 @@ PanelWindow {
                     value: stat?.text ?? ""
                     ratio: stat?.ratio ?? 0
                     critical: stat?.critical ?? false
+                    // Plain strings only notify on change, so buttons aren't rebuilt on every poll
+                    readonly property string device: stat?.disk?.device ?? ""
+                    readonly property string mountpoint: stat?.disk?.mountpoint ?? ""
+                    readonly property bool external: stat?.disk?.external ?? false
+
+                    actions: {
+                        let service = menuWindow.service;
+                        if (device === "") return [];
+                        if (mountpoint === "")
+                            return [{ text: "󰕒 Mount", trigger: () => service.mount(device) }];
+                        let actions = [{ text: " Open", trigger: () => service.open(mountpoint) }];
+                        if (external)
+                            actions.push({ text: "󰇪", trigger: () => service.unmount(device) });
+                        return actions;
+                    }
                 }
             }
         }

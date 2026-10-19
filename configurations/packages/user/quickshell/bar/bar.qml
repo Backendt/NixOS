@@ -2,6 +2,8 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
+    required property var modelData
+    screen: modelData
 
     anchors {
         top: true

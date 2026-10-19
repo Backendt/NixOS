@@ -20,6 +20,7 @@ PanelWindow {
         bottom: true
     }
 
+    screen: service.screen
     visible: progress > 0
     implicitWidth: 400
     exclusiveZone: 0
@@ -30,7 +31,7 @@ PanelWindow {
     WlrLayershell.keyboardFocus: service.centerOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
 
     HyprlandFocusGrab {
-        windows: [centerWindow, root.bar]
+        windows: [centerWindow, ...root.bar.instances]
         active: centerWindow.service.centerOpen && centerWindow.visible
         onCleared: centerWindow.service.centerOpen = false
     }

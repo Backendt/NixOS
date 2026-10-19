@@ -6,7 +6,7 @@ QtObject {
     id: service
 
     readonly property int pollInterval: 2000 // In milliseconds
-    readonly property int diskPollInterval: 30000
+    readonly property int diskPollInterval: 5000 // Short enough to notice plugged drives
 
     // Usage ratios (0 to 1) above which a stat is considered critical
     readonly property real cpuCritical: 0.9
@@ -16,6 +16,7 @@ QtObject {
     readonly property real tempCritical: 85 // In °C
 
     property bool menuOpen: false
+    property var screen: null // Monitor the menu opens on
 
     property real cpuUsage: 0
     property real cpuTemp: -1
@@ -23,7 +24,7 @@ QtObject {
     property real memUsed: 0
     property real swapTotal: 0
     property real swapUsed: 0
-    property var disks: [] // [{ mount, total, used }] in kB
+    property var disks: [] // [{ name, device, mountpoint, external, total, used }] in kB
     property string loadAvg: ""
     property real uptime: 0 // In seconds
 
@@ -44,8 +45,14 @@ QtObject {
         list.push(usage("", "Memory", memUsed, memTotal, memCritical));
         if (swapTotal > 0)
             list.push(usage("󰯍", "Swap", swapUsed, swapTotal, swapCritical));
-        for (let disk of disks)
-            list.push(usage("󰋊", "Disk " + disk.mount, disk.used, disk.total, diskCritical));
+        for (let disk of disks) {
+            let icon = disk.external ? "\uf287" : "󰋊";
+            let item = disk.mountpoint
+                ? usage(icon, disk.name, disk.used, disk.total, diskCritical)
+                : { icon: icon, label: disk.name, ratio: 0, text: "Not mounted · " + formatSize(disk.total), critical: false };
+            item.disk = disk;
+            list.push(item);
+        }
         return list;
     }
     readonly property var criticalItems: items.filter(i => i.critical)
@@ -121,17 +128,46 @@ QtObject {
         onLoaded: service.cpuTemp = Number(text()) / 1000
     }
 
+    // The root filesystem, plus every mountable filesystem on hotplugged / removable drives
     readonly property Process diskProcess: Process {
         running: true
-        command: ["df", "-P", "-x", "tmpfs", "-x", "devtmpfs", "-x", "efivarfs", "-x", "overlay", "-x", "squashfs"]
+        command: ["lsblk", "-J", "-b", "-o", "NAME,PATH,FSTYPE,LABEL,SIZE,FSUSED,FSAVAIL,MOUNTPOINT,HOTPLUG,RM"]
         stdout: StdioCollector {
             onStreamFinished: {
-                service.disks = text.trim().split("\n").slice(1).map(line => {
-                    let cols = line.split(/\s+/);
-                    return { mount: cols[5], total: Number(cols[2]) + Number(cols[3]), used: Number(cols[2]) };
-                });
+                let flatten = devices => devices.reduce((all, d) => all.concat([d], flatten(d.children ?? [])), []);
+                let all = flatten(JSON.parse(text).blockdevices);
+                let unmountable = [null, "swap", "crypto_LUKS", "LVM2_member"];
+                let main = all.filter(d => d.mountpoint === "/");
+                let external = all.filter(d => (d.hotplug || d.rm) && !unmountable.includes(d.fstype));
+                service.disks = [...main, ...external].map(d => ({
+                    name: d.mountpoint === "/" ? "Disk /" : (d.label || d.name),
+                    device: d.path,
+                    mountpoint: d.mountpoint,
+                    external: d.mountpoint !== "/",
+                    total: d.mountpoint ? (Number(d.fsused) + Number(d.fsavail)) / 1024 : Number(d.size) / 1024,
+                    used: Number(d.fsused) / 1024
+                }));
             }
         }
+    }
+
+    readonly property Process udisksProcess: Process {
+        onExited: service.diskProcess.running = true
+    }
+
+    function mount(device) {
+        udisksProcess.command = ["udisksctl", "mount", "--no-user-interaction", "-b", device];
+        udisksProcess.running = true;
+    }
+
+    function unmount(device) {
+        udisksProcess.command = ["udisksctl", "unmount", "--no-user-interaction", "-b", device];
+        udisksProcess.running = true;
+    }
+
+    function open(path) {
+        Quickshell.execDetached(["xdg-open", path]);
+        menuOpen = false;
     }
 
     readonly property Timer pollTimer: Timer {
@@ -156,7 +192,9 @@ QtObject {
         onTriggered: service.diskProcess.running = true
     }
 
-    function toggleMenu() {
-        menuOpen = !menuOpen;
+    // Clicking from another monitor moves the menu there instead of closing it
+    function toggleMenu(screen) {
+        menuOpen = !menuOpen || service.screen !== screen;
+        service.screen = screen;
     }
 }

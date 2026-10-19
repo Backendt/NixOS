@@ -34,7 +34,7 @@ Row {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: clockModule.service.toggleMenu()
+            onClicked: clockModule.service.toggleMenu(QsWindow.window.screen)
         }
     }
 
@@ -62,7 +62,7 @@ Row {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: clockModule.service.toggleMenu()
+                onClicked: clockModule.service.toggleMenu(QsWindow.window.screen)
             }
         }
     }

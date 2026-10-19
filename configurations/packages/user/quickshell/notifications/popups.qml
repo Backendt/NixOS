@@ -16,6 +16,7 @@ PanelWindow {
         right: 8
     }
 
+    screen: root.barScreens[0]
     implicitWidth: 360
     implicitHeight: screen.height * 0.8
     exclusiveZone: 0

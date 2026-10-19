@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 
 import "bar"
 import "notifications"
@@ -15,7 +16,16 @@ QtObject {
     readonly property var notifications: NotificationService {}
     readonly property var stats: StatsService {}
 
-    readonly property var bar: Bar {}
+    // External monitors when any are plugged in, the laptop screen otherwise
+    readonly property var barScreens: {
+        let external = Quickshell.screens.filter(s => !/^(eDP|LVDS|DSI)/.test(s.name));
+        return external.length > 0 ? external : Quickshell.screens;
+    }
+
+    readonly property var bar: Variants {
+        model: root.barScreens
+        Bar {}
+    }
     readonly property var notificationPopups: NotificationPopups {}
     readonly property var notificationCenter: NotificationCenter {}
     readonly property var statsMenu: StatsMenu {}

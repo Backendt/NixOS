@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 let
     model_fast = "gpt-oss:20b";
@@ -21,7 +21,11 @@ in {
         };
     };
 
-    home.packages = [ pkgs.claude-code ];
+    home.packages = [
+        pkgs.unstable.claude-code
+        pkgs.typescript-language-server
+        inputs.serena.packages.${pkgs.system}.default
+    ];
 
     home.sessionVariables = {
         OLLAMA_API_BASE = "http://127.0.0.1:11434";

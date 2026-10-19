@@ -27,6 +27,7 @@ in {
             "shell.qml" = ./shell.qml;
             "bar" = ./bar;
             "modules" = ./modules;
+            "notifications" = ./notifications;
             "Theme.qml" = themeFile;
         };
     };

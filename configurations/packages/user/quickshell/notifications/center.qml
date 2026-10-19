@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 
 PanelWindow {
     id: centerWindow
@@ -27,6 +28,12 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.namespace: "quickshell-notification-center"
     WlrLayershell.keyboardFocus: service.centerOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+
+    HyprlandFocusGrab {
+        windows: [centerWindow, root.bar]
+        active: centerWindow.service.centerOpen && centerWindow.visible
+        onCleared: centerWindow.service.centerOpen = false
+    }
 
     Rectangle {
         id: panel

@@ -28,6 +28,7 @@ in {
             "bar" = ./bar;
             "modules" = ./modules;
             "notifications" = ./notifications;
+            "stats" = ./stats;
             "Theme.qml" = themeFile;
         };
     };

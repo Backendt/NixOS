@@ -1,0 +1,4 @@
+module stats
+StatsService 1.0 service.qml
+StatRow 1.0 row.qml
+StatsMenu 1.0 menu.qml

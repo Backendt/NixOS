@@ -11,11 +11,14 @@ Rectangle {
     readonly property var notif: modelData
     readonly property bool critical: notif?.urgency === NotificationUrgency.Critical
     readonly property bool hovered: cardMouseArea.containsMouse
-    readonly property string iconSource: {
-        if (!notif) return "";
-        if (notif.image) return notif.image;
-        if (notif.appIcon.startsWith("/") || notif.appIcon.startsWith("file://")) return notif.appIcon;
-        return notif.appIcon ? Quickshell.iconPath(notif.appIcon, true) : "";
+    readonly property string iconSource: notif ? resolveIcon(notif.image) || resolveIcon(notif.appIcon) : ""
+
+    // Icon theme names that aren't installed would render as a missing texture, so they resolve to ""
+    function resolveIcon(icon) {
+        if (!icon) return "";
+        if (icon.startsWith("image://icon/")) icon = icon.slice("image://icon/".length);
+        else if (icon.includes("/")) return icon; // A file path, URL or raw image data
+        return Quickshell.iconPath(icon, true);
     }
 
     implicitWidth: 360
@@ -57,6 +60,18 @@ Rectangle {
             implicitSize: 36
             source: card.iconSource
             visible: card.iconSource !== ""
+        }
+
+        // Fallback when the notification has no usable icon
+        Text {
+            Layout.alignment: Qt.AlignTop
+            Layout.preferredWidth: 36
+            horizontalAlignment: Text.AlignHCenter
+            visible: card.iconSource === ""
+            text: card.critical ? "\uf071" : "\uf0f3"
+            color: card.critical ? theme.base08 : theme.base0D
+            font.family: root.fontFamily
+            font.pointSize: root.fontSize + 8
         }
 
         ColumnLayout {

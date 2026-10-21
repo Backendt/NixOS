@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 
+import "alerts"
 import "audio"
 import "bar"
 import "notifications"
@@ -17,6 +18,7 @@ QtObject {
     readonly property var audio: AudioService {}
     readonly property var notifications: NotificationService {}
     readonly property var stats: StatsService {}
+    readonly property var alerts: AlertService {}
 
     // External monitors when any are plugged in, the laptop screen otherwise
     readonly property var barScreens: {

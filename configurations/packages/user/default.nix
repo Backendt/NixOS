@@ -20,6 +20,7 @@
             ./gpg.nix
             ./ssh.nix
             ./ai.nix
+            ./joplin.nix
             settings.theme
             {
                 home.stateVersion = "26.05";

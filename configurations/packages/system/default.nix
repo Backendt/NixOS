@@ -31,6 +31,5 @@
         ./kde-connect.nix
         ./wireguard.nix
         ./virtualization.nix
-        ./ollama.nix
     ];
 }

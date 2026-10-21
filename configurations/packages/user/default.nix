@@ -19,7 +19,7 @@
             ./pentest.nix
             ./gpg.nix
             ./ssh.nix
-            ./ai.nix
+            ./claude-code.nix
             ./joplin.nix
             ./walker.nix
             settings.theme

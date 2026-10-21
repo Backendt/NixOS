@@ -10,7 +10,6 @@
     
 	    nixvim.url = "github:nix-community/nixvim/nixos-26.05";
         stylix.url = "github:danth/stylix/release-26.05";
-        serena.url = "github:oraios/serena/v1.7.0";
         elephant.url = "github:abenz1267/elephant";
         walker = {
           url = "github:abenz1267/walker";

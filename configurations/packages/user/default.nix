@@ -21,6 +21,7 @@
             ./ssh.nix
             ./ai.nix
             ./joplin.nix
+            ./walker.nix
             settings.theme
             {
                 home.stateVersion = "26.05";

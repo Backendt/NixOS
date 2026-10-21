@@ -7,6 +7,8 @@
             # Apps
             "$mod, Return, exec, kitty"
             "$mod, Space, exec, walker"
+            "$mod, E, exec, walker -m symbols"
+            "$mod, C, exec, walker -m clipboard"
             "$mod, B, exec, firefox --private-window"
             "$mod + SHIFT, B, exec, firefox"
             "$mod + SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
     imports = [ inputs.nixvim.homeModules.nixvim ];
@@ -19,7 +19,10 @@
                     bashls.enable = true;
                     nixd.enable = true; # Nix
                     pyright.enable = true; # Python
-                    ruff.enable = true; # Python
+                    ruff = { # Python
+                        enable = true;
+                        package = pkgs.unstable.ruff;
+                    };
                     #sqls.enable = true; # SQL
                     sqruff.enable = true; # SQL
                     rust_analyzer = {

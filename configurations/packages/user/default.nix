@@ -22,6 +22,7 @@
             ./claude-code.nix
             ./joplin.nix
             ./walker.nix
+            ./direnv.nix
             settings.theme
             {
                 home.stateVersion = "26.05";

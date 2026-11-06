@@ -19,10 +19,10 @@
             ./pentest.nix
             ./gpg.nix
             ./ssh.nix
-            ./claude-code.nix
             ./joplin.nix
             ./walker.nix
             ./direnv.nix
+            ./claude-code/default.nix
             settings.theme
             {
                 home.stateVersion = "26.05";

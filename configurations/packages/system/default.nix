@@ -31,5 +31,6 @@
         ./kde-connect.nix
         ./wireguard.nix
         ./virtualization.nix
+        ./firejail.nix
     ];
 }

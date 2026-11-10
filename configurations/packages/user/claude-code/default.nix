@@ -4,19 +4,16 @@ let
     ponytail_version = "v5.3.2";
     ponytail_hash = "sha256-IJlhfkdXI6pMZZCZO7XBRg88LBiNfzc5Gnm4ofGybL8=";
     profile = ./claude-code.profile;
-    sandboxed-wrapper = ./claude-sandboxed-wrapper.sh;
+    sandboxed_wrapper = ./claude-sandboxed-wrapper.sh;
+    claude_bin = pkgs.unstable.claude-code;
     wrapper_bin = pkgs.writeShellApplication {
         name = "claude";
-        runtimeInputs = [ pkgs.unstable.claude-code ];
+        runtimeInputs = [ claude_bin ];
         text = (
             builtins.replaceStrings
-                [ "@PROFILE@" "@CLAUDE@" "@NODE@" ]
-                [
-                    "${profile}"
-                    "${pkgs.unstable.claude-code}/bin/claude"
-                    "${pkgs.nodejs}/bin"
-                ]
-            (builtins.readFile sandboxed-wrapper)
+                [ "@PROFILE@" "@CLAUDE@" ]
+                [ "${profile}" "${claude_bin}/bin/claude" ]
+            (builtins.readFile sandboxed_wrapper)
         );
     };
 in {

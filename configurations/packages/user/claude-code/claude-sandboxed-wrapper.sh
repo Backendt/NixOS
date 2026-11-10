@@ -3,8 +3,7 @@ set -euo pipefail
 
 # Replaced by Nix module with the actual path
 FIREJAIL_PROFILE="@PROFILE@"
-CLAUDE_BIN="@CLAUDE@"
-NODEJS_PATH="@NODE@"
+CLAUDE_BINARY="@CLAUDE@"
 
 HOME="$(realpath "$HOME")"
 export HOME
@@ -17,15 +16,15 @@ if [[ "$PROJECT" == "/" || "$PROJECT" == "$HOME" ]]; then
 fi
 
 FIREJAIL="$(command -v firejail)"
-
 if [[ -x /run/wrappers/bin/firejail ]]; then
     FIREJAIL=/run/wrappers/bin/firejail
 fi
 
-export PATH="$NODEJS_PATH:$PATH"
+HM_PROFILE="$(readlink -e "/etc/profiles/per-user/$USER")"
+export PATH="$HM_PROFILE/bin:$PATH"
 
 exec "$FIREJAIL" \
     --profile="$FIREJAIL_PROFILE" \
     --whitelist="$PROJECT" \
     -- \
-    "$CLAUDE_BIN" "$@"
+    "$CLAUDE_BINARY" "$@"

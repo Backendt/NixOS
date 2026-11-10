@@ -5,14 +5,14 @@ let
     ponytail_hash = "sha256-IJlhfkdXI6pMZZCZO7XBRg88LBiNfzc5Gnm4ofGybL8=";
     profile = ./claude-code.profile;
     sandboxed_wrapper = ./claude-sandboxed-wrapper.sh;
-    claude_bin = pkgs.unstable.claude-code;
+    claude_bin = "${pkgs.unstable.claude-code}/bin/claude";
     wrapper_bin = pkgs.writeShellApplication {
         name = "claude";
         runtimeInputs = [ claude_bin ];
         text = (
             builtins.replaceStrings
                 [ "@PROFILE@" "@CLAUDE@" ]
-                [ "${profile}" "${claude_bin}/bin/claude" ]
+                [ "${profile}" "${claude_bin}" ]
             (builtins.readFile sandboxed_wrapper)
         );
     };
@@ -44,6 +44,9 @@ in {
 
     home.packages = [
         wrapper_bin
+        (pkgs.writeShellScriptBin "claude-unsafe" ''
+          exec ${claude_bin} "$@"
+        '')
         pkgs.typescript-language-server
         pkgs.nodejs
     ];
